@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Countries = require('./models/countries')
 mongoose.connect('mongodb://localhost:27017/countrydb')
     .then(() => {
         console.log('countriesDB connection established')
@@ -7,23 +8,7 @@ mongoose.connect('mongodb://localhost:27017/countrydb')
         console.log('error while connecting to database')
         console.log(err)
     })
-const countriesSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    capital: {
-        type: String,
-        required: true
-    },
-    population: {
-        type: Number
-    },
-    majorcities: {
-        type: [String]
-    }
-})
-const Countries = mongoose.model('Countries', countriesSchema);
+
 const dataToBeInserted = [
     {
         name: "India",
@@ -61,4 +46,10 @@ const dataToBeInserted = [
         population: 0.20,
         majorcities: ['Lagos','Kano','Port Harcourt','Benin City','Ibadan']
     }];
-Countries.insertMany(dataToBeInserted)
+Countries.insertMany(dataToBeInserted).then(res => {
+    console.log('inserted sucessfully')
+    console.log(res)
+}).catch(err => {
+    console.log('error')
+    console.log(err)
+})

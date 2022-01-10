@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 const port = 3000
 const mongoose = require('mongoose');
+const Countries = require('./models/countries')
 mongoose.connect('mongodb://localhost:27017/countrydb')
 .then(()=>{
     console.log('database connection established' )
