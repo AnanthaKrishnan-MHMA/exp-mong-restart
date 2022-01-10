@@ -19,6 +19,10 @@ app.set('view engine','ejs')
 app.get('/',(req,res)=>{
     res.send('HI, WELCOME')
 })
+app.get('/countries',async (req,res)=>{
+    const countries = await Countries.find({})
+    res.render('countries',{countries})
+})
 app.listen(port,()=>{
     console.log(`listening to port ${port}`)
 })              
