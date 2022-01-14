@@ -17,7 +17,7 @@ app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
 
 app.get('/',(req,res)=>{
-    res.send('HI, WELCOME')
+    res.redirect('https://www.youtube.com/playlist?list=PLY-ecO2csVHdLhAO6TERaMJXP8aqyWVt-')
 })
 app.get('/countries',async (req,res)=>{
     const countries = await Countries.find({})
