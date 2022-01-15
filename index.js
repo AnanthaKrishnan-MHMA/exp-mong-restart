@@ -3,7 +3,8 @@ const app = express()
 const path = require('path')
 const port = 3000
 const mongoose = require('mongoose');
-const Countries = require('./models/countries')
+const Countries = require('./models/countries');
+const { urlencoded } = require('express');
 mongoose.connect('mongodb://localhost:27017/countrydb')
 .then(()=>{
     console.log('database connection established' )
@@ -15,14 +16,24 @@ mongoose.connect('mongodb://localhost:27017/countrydb')
 
 app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
+app.use(express.urlencoded({extended: true}))
 
 app.get('/',(req,res)=>{
-    res.redirect('https://www.youtube.com/playlist?list=PLY-ecO2csVHdLhAO6TERaMJXP8aqyWVt-')
+    res.redirect('/countries')
 })
 app.get('/countries',async (req,res)=>{
     const countries = await Countries.find({})
     res.render('countries',{countries})
     console.log(countries)
+})
+app.get('/countries/new',(req,res)=>{
+    res.render('new-country')
+})
+app.post('/countries',async(req,res)=>{
+    console.log(req.body)
+    const newCountry = new Countries(req.body)
+    await newCountry.save();
+    res.redirect(`/countries/${newCountry.id}`)
 })
 app.get('/countries/:id',async (req,res)=>{
     const {id} = req.params
