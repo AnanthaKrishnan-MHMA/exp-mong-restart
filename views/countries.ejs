@@ -13,7 +13,7 @@
     <ul>
         <% for(let country of countries){ %>
             <li>
-                <%= country.name %>
+                <a href="/countries/<%= country.id %> "><%= country.name %></a>
             </li>
             <% } %>
     </ul>

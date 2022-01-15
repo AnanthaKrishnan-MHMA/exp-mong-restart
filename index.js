@@ -22,6 +22,14 @@ app.get('/',(req,res)=>{
 app.get('/countries',async (req,res)=>{
     const countries = await Countries.find({})
     res.render('countries',{countries})
+    console.log(countries)
+})
+app.get('/countries/:id',async (req,res)=>{
+    const {id} = req.params
+    console.log(`id is ${id}`)
+    const country = await Countries.findById(id)
+    console.log(country)
+    res.render('country-details',{country})
 })
 app.listen(port,()=>{
     console.log(`listening to port ${port}`)
