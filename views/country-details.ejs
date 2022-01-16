@@ -13,6 +13,11 @@
         <li><%= city %> </li>
     <% } %>  </ul></h3>
     <h3>Population : <%= country.population %> Billion</h3>
+    <br>
+    <a href="/countries/<%= country.id %>/edit ">Edit</a>
+    <br>
+    <a href="/countries/<%= country.id %>/delete ">Delete</a>
+    <br>
     <a href="/countries">Back</a>
 </body>
 </html>
