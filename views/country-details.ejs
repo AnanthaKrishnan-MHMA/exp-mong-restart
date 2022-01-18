@@ -9,6 +9,7 @@
 <body>
     <h1><%= country.name %> details</h1>
     <h3>Capital : <%= country.capital %> </h3>
+    <h3>Continent : <a href="/countries?continent=<%= country.continent %>"><%= country.continent %></a></h3>
     <h3>Major Cities :<ul>  <% for( let city of country.majorcities ) { %>
         <li><%= city %> </li>
     <% } %>  </ul></h3>

@@ -8,6 +8,10 @@ const countriesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    continent:{
+        type: String,
+        required: true
+    },
     population: {
         type: Number
     },
